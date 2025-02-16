@@ -604,3 +604,248 @@ GPIO is a fundamental MCU feature enabling direct control of external devices.
 ## Conclusion
 
 I/O protocols and GPIOs are essential for MCU interaction with the external world. Each protocol (UART, SPI, I²C) caters to different needs based on speed, connection complexity, and the number of devices. GPIOs offer flexible control but often require additional circuitry for high-power applications.
+
+# Pulse-Width Modulation (PWM) and Analog-to-Digital Conversion (ADC)
+
+## Pulse-Width Modulation (PWM)
+
+PWM is a technique used to control power delivery to electrical devices by switching a signal on and off at a high frequency. This allows for efficient power control without significant energy loss.
+
+### Key Concepts of PWM
+
+**Duty Cycle (D):**
+
+The percentage of time the signal is active (ON) within one cycle.
+
+Formula:  `D = (PW / T) * 100`
+
+Where:
+
+*   PW = Pulse Width (ON time)
+*   T = Total period of the waveform
+
+Examples:
+
+*   25% duty cycle → Signal is ON for 25% of the time.
+*   50% duty cycle → Signal is ON for 50% of the time.
+*   100% duty cycle → Signal is ON continuously (acts like a DC signal).
+
+**Frequency (f):**
+
+The rate at which the signal cycles (turns ON and OFF).
+
+Formula: `f = 1 / T`
+
+Where:
+
+*   T = Period of one cycle (in seconds).
+
+Higher frequencies reduce visible flicker (e.g., in LED dimming).
+
+**Average Voltage (V_avg):**
+
+Determines how much effective power is delivered.
+
+Formula: `V_avg = V_h * (D / 100)`
+
+Where:
+
+*   V_h = High voltage level.
+
+### Applications of PWM
+
+*   **Motor Speed Control:** Adjusting the duty cycle controls the speed of DC motors (e.g., in robotics, fans).
+*   **LED Dimming:** Adjusting the duty cycle changes the brightness of LEDs.
+*   **Power Regulation:** Used in switching power supplies to improve energy efficiency.
+*   **Audio Signal Generation:** Used in sound synthesis and music systems.
+
+## Analog-to-Digital Conversion (ADC)
+
+ADC is the process of converting a continuous (analog) signal into a digital representation. This is essential for microcontrollers to process sensor inputs.
+
+### Key Steps in ADC
+
+**Sampling:**
+
+The continuous analog signal is measured at discrete time intervals. The sampling rate (frequency) determines how often measurements are taken.
+
+Example: If sampling rate = 10 kHz, measurements occur 10,000 times per second.
+
+**Quantization:**
+
+Each sampled value is assigned to the nearest available discrete amplitude level. The number of levels depends on the bit resolution.
+
+Example:
+
+*   8-bit ADC: 256 levels (0 to 255).
+*   10-bit ADC: 1024 levels (0 to 1023).
+*   12-bit ADC: 4096 levels (0 to 4095).
+
+Higher bit resolution provides greater accuracy.
+
+**Encoding:**
+
+The quantized value is converted into a binary code for digital processing.
+
+Example: Analog value 2.7V (in a 0-5V range) may be encoded as 1101 1011 (8-bit representation).
+
+### Applications of ADC
+
+*   **Sensor Data Acquisition:** Used in temperature sensors, pressure sensors, and accelerometers.
+*   **Medical Equipment:** ECG machines, digital thermometers.
+*   **Audio Processing:** Converting sound waves into digital audio formats (MP3, WAV).
+*   **Image Processing:** Cameras use ADC to convert light intensity into digital pixel values.
+
+## Conclusion
+
+*   PWM is used for power control by varying the duty cycle of a digital signal.
+*   ADC is used to convert analog sensor readings into digital data for processing.
+*   Both technologies are essential in embedded systems, automation, and IoT applications.
+# Features of an Analog-to-Digital Converter (ADC)
+
+An ADC is an essential component in digital electronics and embedded systems, responsible for converting analog signals (e.g., voltage from sensors) into digital values that a microcontroller or processor can process.
+
+## Key Features of an ADC
+
+**Sampling Rate:**
+
+*   Defines how often the ADC captures an analog value per second.
+*   Measured in samples per second (SPS) or Hertz (Hz).
+*   Example: A 1000 SPS ADC samples data 1000 times per second.
+*   Higher sampling rates allow for more accurate representation of fast-changing signals (e.g., audio signals in music processing).
+
+**Quantization:**
+
+*   The process of converting sampled analog values into a finite number of discrete levels.
+*   The more quantization levels available, the higher the resolution of the ADC.
+*   Example: If an 8-bit ADC is used, it has 256 quantization levels (2⁸ = 256). A 12-bit ADC has 4096 levels (2¹² = 4096), allowing more precise measurements.
+
+**Resolution:**
+
+*   The number of bits used to represent the digital output.
+*   Higher resolution means greater accuracy in measuring small changes in analog signals.
+*   Example: A 10-bit ADC can represent values from 0 to 1023. A 12-bit ADC can represent values from 0 to 4095, offering 4 times better precision.
+
+**Conversion Time:**
+
+*   The time taken by the ADC to convert an analog input into a digital output.
+*   Shorter conversion time means faster ADC performance.
+*   Example: A high-speed ADC (e.g., 1 MSPS) can complete 1 million conversions per second.
+
+**Conversion Method:**
+
+*   The technique used to perform analog-to-digital conversion.
+*   Common methods:
+    *   Successive Approximation (SAR)
+    *   Flash ADC
+    *   Sigma-Delta ADC
+*   Example: The Successive Approximation ADC (SAR ADC) is widely used in microcontrollers and embedded systems due to its balance of speed and accuracy.
+
+## Successive Approximation Method
+
+The Successive Approximation Register (SAR) ADC is one of the most common types of ADCs. It efficiently converts analog signals into digital form using a binary search algorithm.
+
+### How SAR ADC Works
+
+**Binary Search Process:**
+
+*   The ADC starts with the most significant bit (MSB) and checks whether the input voltage is higher or lower than the midpoint of the reference voltage.
+*   It then sets or clears bits one by one until the best approximation of the input voltage is found.
+
+**Comparison with a DAC:**
+
+*   The SAR ADC contains a Digital-to-Analog Converter (DAC).
+*   The DAC generates voltage levels corresponding to digital values.
+*   A comparator checks if the analog input is higher or lower than the DAC output.
+*   This process continues bit by bit until the digital approximation is complete.
+
+**Time Complexity:**
+
+*   Since the SAR ADC uses binary search, it takes N clock cycles for an N-bit ADC to complete a conversion.
+*   Example: A 10-bit SAR ADC takes 10 clock cycles per conversion. A 12-bit SAR ADC takes 12 clock cycles per conversion.
+
+### Advantages of SAR ADC
+
+*   ✔ High accuracy: Suitable for applications requiring precise measurements.
+*   ✔ Moderate speed: Faster than sigma-delta ADCs but slower than flash ADCs.
+*   ✔ Low power consumption: Used in battery-operated devices like IoT sensors, medical devices, and embedded systems.
+*   ✔ Cost-effective: More affordable than high-speed flash ADCs.
+
+### Applications of SAR ADC
+
+*   Microcontrollers (e.g., Arduino, STM32, ESP32) for sensor data acquisition.
+*   Biomedical applications (e.g., ECG, blood pressure monitors).
+*   Industrial automation (e.g., temperature, pressure, and humidity sensing).
+*   Communication systems (e.g., signal sampling in digital radios).
+*   Battery-powered devices like wearables and IoT sensors.
+
+## Conclusion
+
+*   ADCs are critical for converting real-world analog signals into digital data.
+*   The Successive Approximation ADC (SAR ADC) is a widely used efficient method that balances speed, accuracy, and power consumption.
+*   SAR ADCs are preferred in embedded systems, microcontrollers, and IoT applications.
+# Successive Approximation Algorithm (SAR ADC) - Detailed Explanation
+
+The Successive Approximation Register (SAR) ADC uses a binary search approach to convert an analog signal into a digital value.  This document provides a detailed breakdown of the algorithm.
+
+## Algorithm Breakdown
+
+The SAR ADC's core is a binary search algorithm. It iteratively refines its estimate of the input voltage, bit by bit, until it achieves the desired resolution.
+
+## Step-by-Step Algorithm
+
+1. **Initialize Trial Voltage:** The first trial voltage is set to half the full-scale voltage range of the ADC.  This represents the midpoint of the possible input values.
+
+   *   Example: If the full-scale voltage range is 10V, the first trial voltage is 5V.
+
+2. **Comparison with Input Signal:** The trial voltage is compared to the actual analog input voltage.
+
+   *   If the input voltage is *greater* than the trial voltage, the most significant bit (MSB) of the digital output is set to 1.
+   *   If the input voltage is *less* than the trial voltage, the MSB is set to 0.
+
+3. **Adjust Trial Voltage for Next Iteration:** The trial voltage is adjusted for the next iteration.  The *step size* of the adjustment is halved compared to the previous step.  This is the key to the binary search.
+
+   *   If the previous comparison resulted in a '1' (input > trial), the new trial voltage is the *previous trial voltage + (1/4) of the full-scale range*.
+   *   If the previous comparison resulted in a '0' (input < trial), the new trial voltage is the *previous trial voltage - (1/4) of the full-scale range*.
+
+4. **Repeat Steps 2 and 3:** Steps 2 and 3 are repeated for each subsequent bit in the desired digital output, moving from the MSB to the least significant bit (LSB).  With each iteration, the step size of the trial voltage adjustment is halved.
+
+5. **Final Digital Representation:** After all bits have been determined, the resulting binary value represents the digital equivalent of the analog input voltage.
+
+## Example of SAR ADC Encoding
+
+Let's encode an analog input voltage of 6.8V using a 6-bit ADC with a full-scale voltage of 10V.
+
+| Step | Trial Voltage (V) | Condition (Input > Trial) | Bit Output | Remaining Voltage (V) |
+|---|---|---|---|---|
+| 1 | 5.0 | 6.8V > 5.0V → 1 | 1 | 1.8 |
+| 2 | 7.5 | 6.8V < 7.5V → 0 | 10 | 1.8 |
+| 3 | 6.25 | 6.8V > 6.25V → 1 | 101 | 0.55 |
+| 4 | 6.875 | 6.8V < 6.875V → 0 | 1010 | 0.55 |
+| 5 | 6.5625 | 6.8V > 6.5625V → 1 | 10101 | 0.2375 |
+| 6 | 6.71875 | 6.8V > 6.71875V → 1 | 101011 | 0.08125 |
+
+## Final Digital Output
+
+The binary output is **101011**.
+
+Converting this to decimal: (1\*2⁵) + (0\*2⁴) + (1\*2³) + (0\*2²) + (1\*2¹) + (1\*2⁰) = 32 + 0 + 8 + 0 + 2 + 1 = 43
+
+The digital value 43 corresponds to a voltage of (43/63) * 10V ≈ 6.825V, which is very close to the original input of 6.8V. The difference is due to the limited resolution of the 6-bit ADC.
+
+## Key Observations
+
+*   The trial voltage starts at half the full-scale range and is *halved* in each step's *adjustment*.
+*   Each bit in the digital output reflects whether the trial voltage was greater or less than the input.
+*   The binary search makes the SAR ADC fast and efficient, requiring only *N* steps for an *N*-bit resolution.
+*   The final encoded value closely approximates the input voltage.
+
+## Applications of SAR ADC
+
+SAR ADCs are widely used due to their balance between speed, power efficiency, and resolution.  They are particularly well-suited for:
+
+*   **Microcontrollers & Embedded Systems:** (Arduino, STM32, ESP32) - For sensor data acquisition.
+*   **Industrial Automation:** (Temperature, Pressure, and Humidity Sensors)
+*   **Biomedical Applications:** (ECG, EEG Monitoring)
+*   **Digital Oscilloscopes:** (High-speed signal sampling)
+*   **Battery-Powered Devices:** (IoT Sensors, Wearables)
