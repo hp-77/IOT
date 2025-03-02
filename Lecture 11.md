@@ -310,52 +310,29 @@ This image compares Infrastructure-based networks and Ad-Hoc networks, explainin
 * **Ad-Hoc Networks:** AirDrop, Bluetooth tethering, emergency rescue operations, military networks.
 # 📡 What is Ad-Hoc Routing?
 
-In ad-hoc networks, nodes act as both hosts and routers.
-No fixed infrastructure like routers or access points.
-Routes can change dynamically due to mobility.
-Packets may take multiple hops to reach the destination.
+- Adhoc routing in IoT WiFi networks refers to communication between devices in a decentralized, infrastructure-less manner, where each device (or node) can act as both a host and a router.
+- No fixed infrastructure like routers or access points.
+- Routes can change dynamically due to mobility.
+- Packets may take multiple hops to reach the destination.
+- Scalability: Supports a large number of connected devices.
+- An ad-hoc routing protocol is a convention that controls how nodes decide which way to route packets between computing devices in a mobile ad-hoc network
 
-## 🛤 Key Concept: Neighbor Discovery
+- **Neighbor Discovery** is the foundation of most adhoc protocols in which : <br>
 
 Nodes broadcast periodic messages (e.g., beacon packets) to detect nearby devices.
 Helps build a "neighbor table", allowing nodes to learn about their 2-hop neighborhood (direct and indirect connections).
 
-## 🗺 Types of Ad-Hoc Routing Protocols
 
-### 1️⃣ Proactive Routing (Table-Driven)
-
-Continuously updates routing tables, even if no communication is happening.
-Fast route discovery but high overhead.
-📌 **Example:** OLSR (Optimized Link State Routing).
-
-### 2️⃣ Reactive Routing (On-Demand)
-
-Routes are created only when needed (reduces overhead).
-Slower initial transmission due to route discovery.
-📌 **Example:** AODV (Ad-hoc On-Demand Distance Vector).
-
-### 3️⃣ Geographic Routing
-
-Uses location-based decisions instead of routing tables.
-Routes packets based on node positions (via GPS or other methods).
-📌 **Example:** GPSR (Greedy Perimeter Stateless Routing).
-
-## 🆚 Comparing Routing Protocols
-
-| Feature          | Proactive              | Reactive                 | Geographic              |
-| ---------------- | ---------------------- | ------------------------ | ----------------------- |
-| Route Setup      | Always ready           | On-demand                | Based on location       |
-| Overhead         | High (constant updates) | Low                      | Low                     |
-| Latency          | Low                    | High (initial delay)     | Medium                  |
-| Scalability      | Moderate               | Good                     | Excellent               |
-| Ideal Use Cases  | Small static networks  | Dynamic, mobile networks | GPS-based applications  |
 
 ## 📌 Real-World Applications
 
 * ✔️ **Proactive:** Military mesh networks, corporate setups.
 * ✔️ **Reactive:** IoT devices, emergency communication.
 * ✔️ **Geographic:** UAV (drones), vehicular ad-hoc networks (VANETs).
+---
+
 # 📡 Proactive "Link-State" Routing Algorithms
+![image](https://github.com/user-attachments/assets/f7443c97-d7a2-4739-afef-17a78c5353c1)
 
 This image explains how Link-State Routing works in proactive protocols, focusing on topology discovery and route updates.
 
@@ -363,7 +340,7 @@ This image explains how Link-State Routing works in proactive protocols, focusin
 
 * Every node shares its link information with its neighbors.
 * Over time, all nodes can build a complete map of the network.
-* Assumes the topology remains stable long enough for all nodes to sync.
+* Assumes the topology remains stable long enough for all nodes to sync and have same information available
 
 ## 🔄 How Link Updates Work?
 
@@ -373,6 +350,7 @@ This image explains how Link-State Routing works in proactive protocols, focusin
 * Eventually, the entire network is updated.
 
 ## 🔗 Example of Link-State Update (New Link A↔C)
+![image](https://github.com/user-attachments/assets/45232f40-064d-4533-b3b5-6421cac36a35)
 
 1️⃣ **Initial State:** Nodes A, B, C, and D have a common network topology.
 2️⃣ **New Link A↔C is Established.**
@@ -381,7 +359,7 @@ This image explains how Link-State Routing works in proactive protocols, focusin
 
 ## 🌍 Advantages of Link-State Routing
 
-* ✔️ **Faster Convergence** – All nodes quickly sync topology changes.
+* ✔️ **Faster Convergence** – All nodes quickly sync topology changes and rapidly update to network changes
 * ✔️ **More Accurate Routes** – Each node has a global network view.
 * ✔️ **Efficient for Large Networks** – Better than distance-vector in complex topologies.
 
