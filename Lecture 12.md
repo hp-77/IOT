@@ -101,7 +101,8 @@ When a client (such as a web browser) sends an HTTP request to a server, the ser
 * "All web content is associated with a file that is managed by the server."
 * Even dynamically generated content originates from a script or program stored as a file on the server.
 
-## 2. URLs (Universal Resource Locators)
+## 2. URLs (Universal Resource Locators) URI --(Uniform Resource Identifier) Difference in full form of both "U".
+ 
 
 Every file managed by a web server is uniquely identified by a URL.
 
@@ -237,7 +238,7 @@ Content-Length: 42092
 - Marks the end of headers and the start of the response body.
 
 ### Step 4: Server Sends the Response Body (HTML)
-```html
+```
 <html>
 ...
 </html>
@@ -273,12 +274,9 @@ Connection closed by foreign host.
 | **Response Line** | Contains the HTTP version and status code (200 OK, 404 Not Found). |
 | **Response Body** | Contains the actual content requested (e.g., an HTML webpage). |
 
-## Why Is This Important?
-- Understanding an HTTP transaction helps in debugging web issues.
-- Web developers use tools like Telnet, cURL, and Postman to test and analyze HTTP requests and responses.
-- Knowing response headers (e.g., Content-Type, Content-Length) is essential for handling API responses.
-# Structure of an HTTP Request
 
+# Structure of an HTTP Request
+An HTTP request is a message sent from a client to a server using the Hypertext Transfer Protocol (HTTP). HTTP requests are used to request information from a server, such as a web page or other resource. 
 An HTTP request consists of:
 
 - **Request Line**
@@ -286,7 +284,7 @@ An HTTP request consists of:
 - **Request Body** (optional)
 
 ### The Request Line follows this format:
-```http
+```
 <method> <URI> <version>
 ```
 - `<method>` → Specifies the HTTP method (e.g., GET, POST, PUT).
@@ -294,7 +292,7 @@ An HTTP request consists of:
 - `<version>` → Specifies the HTTP version (HTTP/1.0, HTTP/1.1).
 
 #### Example of a Request Line:
-```http
+```
 GET /index.html HTTP/1.1
 ```
 - `GET` → HTTP method to retrieve a resource.
@@ -338,7 +336,7 @@ An HTTP response is what a web server sends back to a client after receiving an 
 - **Response Body** (optional)
 
 ## Response Line Format:
-```http
+```
 <version> <status code> <status message>
 ```
 - `<version>` → HTTP version (HTTP/1.1, HTTP/2)
@@ -561,6 +559,7 @@ The One-Stop Shopping approach violates Axiom 0 of web design.
 ### Web Design, Axiom 0 (Tim Berners-Lee)
 
 Tim Berners-Lee, the founder of the World Wide Web (WWW) and director of W3C (World Wide Web Consortium), introduced Axiom 0 as a fundamental principle for web design:
+![image](https://github.com/user-attachments/assets/c292ad8a-6963-4442-83f8-20fa22597a17)
 
 **Axiom 0 Explained:**
 
@@ -663,6 +662,7 @@ This section summarizes the key points covered so far:
     * **Approach 1:** Centralized processing with an intermediary (Answering Machine / Priority Manager).
     * **Approach 2:** Direct access using separate telephone numbers or URLs.
 * **The key question:** Which approach follows the REST design pattern?
+![image](https://github.com/user-attachments/assets/486946cf-2e3c-4959-83f5-acbd99d6786e)
 
 ## Why This Ain’t the REST Design Pattern
 
